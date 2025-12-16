@@ -15,6 +15,7 @@ A sandbox is an isolated environment where you can safely run code, manipulate f
 | Process Spawning | `deno task processes` | Run programs and capture their output |
 | JavaScript REPL | `deno task repl` | Execute JavaScript code interactively |
 | HTTP Server | `deno task http` | Run a web server inside the sandbox |
+| Volumes | `deno task volumes` | Persistent storage across sandbox sessions |
 
 Run all examples in sequence with `deno task all`.
 
