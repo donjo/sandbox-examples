@@ -36,7 +36,7 @@ if (existingVolume) {
 // Capacity can be specified as bytes (number) or human-readable strings
 const volume = await client.volumes.create({
   slug: VOLUME_SLUG,
-  region: "us-east-1",
+  region: "ord",
   capacity: "1GB", // Also accepts: "500MB", "1GiB", "100MiB", or bytes as number
 });
 
