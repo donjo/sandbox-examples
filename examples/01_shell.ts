@@ -3,14 +3,25 @@
  *
  * This is the simplest way to use a sandbox - running terminal commands.
  * It's like having a mini terminal that's completely isolated from your system.
+ *
+ * This example also demonstrates using labels to tag your sandbox.
+ * Labels help identify and filter sandboxes (up to 5 labels allowed).
  */
 
 import { Sandbox } from "@deno/sandbox";
 
-// Create the sandbox (automatically cleaned up when done)
-await using sandbox = await Sandbox.create();
+// Create the sandbox with labels for identification
+// Labels are key-value pairs that help you organize and filter sandboxes
+await using sandbox = await Sandbox.create({
+  labels: {
+    environment: "development",
+    purpose: "shell-example",
+    version: "1.0",
+  },
+});
 
 console.log("Running some shell commands in the sandbox...\n");
+console.log("This sandbox is labeled with: environment=development, purpose=shell-example\n");
 
 // Basic echo command
 await sandbox.sh`echo "Hello from the sandbox!"`;
