@@ -9,6 +9,7 @@
     "repl": "deno run --env-file=.env -A examples/04_repl.ts",
     "http": "deno run --env-file=.env -A examples/05_http_server.ts",
     "volumes": "deno run --env-file=.env -A examples/06_volumes.ts",
+    "persistent": "deno run --env-file=.env -A examples/07_persistent.ts",
     "all": "deno task shell && deno task files && deno task processes && deno task repl && deno task http && deno task volumes"
   }
 }
