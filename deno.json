@@ -10,6 +10,10 @@
     "http": "deno run --env-file=.env -A examples/05_http_server.ts",
     "volumes": "deno run --env-file=.env -A examples/06_volumes.ts",
     "persistent": "deno run --env-file=.env -A examples/07_persistent.ts",
+    "outbound": "deno run --env-file=.env -A examples/08_outbound.ts",
     "all": "deno task shell && deno task files && deno task processes && deno task repl && deno task http && deno task volumes"
+  },
+  "deploy": {
+    "org": "donjo"
   }
 }
