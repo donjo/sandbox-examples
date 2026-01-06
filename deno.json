@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@deno/sandbox": "jsr:@deno/sandbox@^0.4.1"
+    "@deno/sandbox": "jsr:@deno/sandbox@^0.5.0"
   },
   "tasks": {
     "shell": "deno run --env-file=.env -A examples/01_shell.ts",
@@ -11,6 +11,10 @@
     "volumes": "deno run --env-file=.env -A examples/06_volumes.ts",
     "persistent": "deno run --env-file=.env -A examples/07_persistent.ts",
     "outbound": "deno run --env-file=.env -A examples/08_outbound.ts",
+    "download": "deno run --env-file=.env -A examples/09_download.ts",
+    "discovery": "deno run --env-file=.env -A examples/10_file_discovery.ts",
+    "lifetime": "deno run --env-file=.env -A examples/11_lifetime.ts",
+    "management": "deno run --env-file=.env -A examples/12_sandbox_management.ts",
     "all": "deno task shell && deno task files && deno task processes && deno task repl && deno task http && deno task volumes"
   },
   "deploy": {
