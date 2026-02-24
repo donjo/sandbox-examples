@@ -15,6 +15,7 @@
     "discovery": "deno run --env-file=.env -A examples/10_file_discovery.ts",
     "lifetime": "deno run --env-file=.env -A examples/11_lifetime.ts",
     "management": "deno run --env-file=.env -A examples/12_sandbox_management.ts",
+    "seed": "deno run --env-file=.env -A examples/13_labeled_sandboxes.ts",
     "all": "deno task shell && deno task files && deno task processes && deno task repl && deno task http && deno task volumes"
   },
   "deploy": {
