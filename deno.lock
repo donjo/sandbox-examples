@@ -1,6 +1,8 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@deno/sandbox@*": "0.5.0",
+    "jsr:@deno/sandbox@0": "0.5.0",
     "jsr:@deno/sandbox@0.5": "0.5.0",
     "jsr:@std/encoding@^1.0.10": "1.0.10",
     "jsr:@std/fs@^1.0.19": "1.0.21",
