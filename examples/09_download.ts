@@ -31,7 +31,7 @@ console.log("=== File Transfer Round-Trip Demo ===\n");
 console.log("Step 1: Creating files inside the sandbox...\n");
 
 // Create a simple text file
-await sandbox.writeTextFile(
+await sandbox.fs.writeTextFile(
   "/home/user/report.txt",
   `Project Report
 ==============
@@ -44,7 +44,7 @@ You can download it to your local machine!
 console.log("  Created: /home/user/report.txt");
 
 // Create a JSON data file (simulating processed data)
-await sandbox.writeTextFile(
+await sandbox.fs.writeTextFile(
   "/home/user/data.json",
   JSON.stringify(
     {
@@ -63,10 +63,10 @@ await sandbox.writeTextFile(
 console.log("  Created: /home/user/data.json");
 
 // Create a directory with multiple files (simulating build output)
-await sandbox.mkdir("/home/user/output");
-await sandbox.writeTextFile("/home/user/output/index.html", "<html><body><h1>Hello!</h1></body></html>");
-await sandbox.writeTextFile("/home/user/output/style.css", "body { font-family: sans-serif; }");
-await sandbox.writeTextFile("/home/user/output/app.js", "console.log('App loaded');");
+await sandbox.fs.mkdir("/home/user/output");
+await sandbox.fs.writeTextFile("/home/user/output/index.html", "<html><body><h1>Hello!</h1></body></html>");
+await sandbox.fs.writeTextFile("/home/user/output/style.css", "body { font-family: sans-serif; }");
+await sandbox.fs.writeTextFile("/home/user/output/app.js", "console.log('App loaded');");
 console.log("  Created: /home/user/output/ directory with 3 files");
 
 // Step 2: Download files to your local machine
@@ -75,15 +75,15 @@ console.log("  Created: /home/user/output/ directory with 3 files");
 console.log("\nStep 2: Downloading files to local machine...\n");
 
 // Download a single file
-await sandbox.download("/home/user/report.txt", "/tmp/sandbox-demo/report.txt");
+await sandbox.fs.download("/home/user/report.txt", "/tmp/sandbox-demo/report.txt");
 console.log("  Downloaded: report.txt -> /tmp/sandbox-demo/report.txt");
 
 // Download another single file
-await sandbox.download("/home/user/data.json", "/tmp/sandbox-demo/data.json");
+await sandbox.fs.download("/home/user/data.json", "/tmp/sandbox-demo/data.json");
 console.log("  Downloaded: data.json -> /tmp/sandbox-demo/data.json");
 
 // Download an entire directory (all files inside it)
-await sandbox.download("/home/user/output", "/tmp/sandbox-demo/output");
+await sandbox.fs.download("/home/user/output", "/tmp/sandbox-demo/output");
 console.log("  Downloaded: output/ directory -> /tmp/sandbox-demo/output/");
 
 // Step 3: Verify the downloads worked by reading locally

@@ -20,7 +20,7 @@ await sandbox.sh`ls -la`;
 console.log("\n=== Running a Script ===\n");
 
 // First, let's create a simple script file
-await sandbox.writeTextFile(
+await sandbox.fs.writeTextFile(
   "greet.sh",
   `#!/bin/bash
 echo "Hello from the script!"

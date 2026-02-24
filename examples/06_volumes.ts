@@ -54,11 +54,11 @@ for (let i = 0; i < ONE_MB; i++) {
 }
 
 // Write the file to the volume
-await sandbox.writeFile("/data/large-file.bin", largeData);
+await sandbox.fs.writeFile("/data/large-file.bin", largeData);
 console.log("Created 1MB file at /data/large-file.bin");
 
 // Verify the file size
-const fileInfo = await sandbox.stat("/data/large-file.bin");
+const fileInfo = await sandbox.fs.stat("/data/large-file.bin");
 console.log("File size:", (fileInfo.size / 1024 / 1024).toFixed(2), "MB");
 
 console.log("\nDone! Volume", volume.slug, "persists after this script ends.");

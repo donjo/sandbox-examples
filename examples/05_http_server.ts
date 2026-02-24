@@ -42,7 +42,7 @@ const serverCode = `
 `;
 
 // Start the server inside the sandbox
-const runtime = await sandbox.createJsRuntime({ code: serverCode });
+const runtime = await sandbox.deno.run({ code: serverCode });
 
 // Wait for the server to be ready
 const isReady = await runtime.httpReady;

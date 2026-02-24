@@ -35,7 +35,7 @@ console.log("\n--- Method 3: Using JavaScript fetch ---");
 // This is useful when you need more control over the request handling
 
 // First, write a small script to the sandbox
-await sandbox.writeTextFile(
+await sandbox.fs.writeTextFile(
   "/home/user/fetch-example.ts",
   `
 // This script runs inside the sandbox and makes a fetch request

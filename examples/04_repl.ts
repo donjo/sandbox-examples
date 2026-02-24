@@ -11,7 +11,7 @@ import { Sandbox } from "@deno/sandbox";
 await using sandbox = await Sandbox.create();
 
 // Create a REPL environment inside the sandbox
-await using repl = await sandbox.repl();
+await using repl = await sandbox.deno.repl();
 
 console.log("=== Basic Evaluation ===\n");
 

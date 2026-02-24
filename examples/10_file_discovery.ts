@@ -29,31 +29,31 @@ console.log("=== File Discovery Demo ===\n");
 console.log("Setting up a sample project structure...\n");
 
 // Create a mock project with various file types
-await sandbox.mkdir("/home/user/my-project/src/components", { recursive: true });
-await sandbox.mkdir("/home/user/my-project/src/utils", { recursive: true });
-await sandbox.mkdir("/home/user/my-project/public/images", { recursive: true });
-await sandbox.mkdir("/home/user/my-project/tests", { recursive: true });
+await sandbox.fs.mkdir("/home/user/my-project/src/components", { recursive: true });
+await sandbox.fs.mkdir("/home/user/my-project/src/utils", { recursive: true });
+await sandbox.fs.mkdir("/home/user/my-project/public/images", { recursive: true });
+await sandbox.fs.mkdir("/home/user/my-project/tests", { recursive: true });
 
 // Add various files
-await sandbox.writeTextFile("/home/user/my-project/package.json", '{"name": "my-project"}');
-await sandbox.writeTextFile("/home/user/my-project/tsconfig.json", '{"compilerOptions": {}}');
-await sandbox.writeTextFile("/home/user/my-project/README.md", "# My Project");
-await sandbox.writeTextFile("/home/user/my-project/.gitignore", "node_modules/");
+await sandbox.fs.writeTextFile("/home/user/my-project/package.json", '{"name": "my-project"}');
+await sandbox.fs.writeTextFile("/home/user/my-project/tsconfig.json", '{"compilerOptions": {}}');
+await sandbox.fs.writeTextFile("/home/user/my-project/README.md", "# My Project");
+await sandbox.fs.writeTextFile("/home/user/my-project/.gitignore", "node_modules/");
 
-await sandbox.writeTextFile("/home/user/my-project/src/index.ts", "export * from './components';");
-await sandbox.writeTextFile("/home/user/my-project/src/types.ts", "export type User = { name: string };");
-await sandbox.writeTextFile("/home/user/my-project/src/components/Button.tsx", "export const Button = () => {};");
-await sandbox.writeTextFile("/home/user/my-project/src/components/Card.tsx", "export const Card = () => {};");
-await sandbox.writeTextFile("/home/user/my-project/src/components/index.ts", "export * from './Button';");
-await sandbox.writeTextFile("/home/user/my-project/src/utils/helpers.ts", "export const helper = () => {};");
-await sandbox.writeTextFile("/home/user/my-project/src/utils/format.ts", "export const format = () => {};");
+await sandbox.fs.writeTextFile("/home/user/my-project/src/index.ts", "export * from './components';");
+await sandbox.fs.writeTextFile("/home/user/my-project/src/types.ts", "export type User = { name: string };");
+await sandbox.fs.writeTextFile("/home/user/my-project/src/components/Button.tsx", "export const Button = () => {};");
+await sandbox.fs.writeTextFile("/home/user/my-project/src/components/Card.tsx", "export const Card = () => {};");
+await sandbox.fs.writeTextFile("/home/user/my-project/src/components/index.ts", "export * from './Button';");
+await sandbox.fs.writeTextFile("/home/user/my-project/src/utils/helpers.ts", "export const helper = () => {};");
+await sandbox.fs.writeTextFile("/home/user/my-project/src/utils/format.ts", "export const format = () => {};");
 
-await sandbox.writeTextFile("/home/user/my-project/public/index.html", "<html></html>");
-await sandbox.writeTextFile("/home/user/my-project/public/images/logo.png", "fake-image-data");
-await sandbox.writeTextFile("/home/user/my-project/public/images/hero.jpg", "fake-image-data");
+await sandbox.fs.writeTextFile("/home/user/my-project/public/index.html", "<html></html>");
+await sandbox.fs.writeTextFile("/home/user/my-project/public/images/logo.png", "fake-image-data");
+await sandbox.fs.writeTextFile("/home/user/my-project/public/images/hero.jpg", "fake-image-data");
 
-await sandbox.writeTextFile("/home/user/my-project/tests/Button.test.ts", "test('button', () => {});");
-await sandbox.writeTextFile("/home/user/my-project/tests/Card.test.ts", "test('card', () => {});");
+await sandbox.fs.writeTextFile("/home/user/my-project/tests/Button.test.ts", "test('button', () => {});");
+await sandbox.fs.writeTextFile("/home/user/my-project/tests/Card.test.ts", "test('card', () => {});");
 
 console.log("Project structure created!\n");
 
@@ -68,7 +68,7 @@ console.log("All files in the project:");
 console.log("-".repeat(50));
 
 // walk() yields information about each file/folder it encounters
-for await (const entry of sandbox.walk("/home/user/my-project", {})) {
+for await (const entry of sandbox.fs.walk("/home/user/my-project", {})) {
   // entry.path = full path to the file/folder
   // entry.name = just the filename
   // entry.isFile = true if it's a file
@@ -94,7 +94,7 @@ console.log("expandGlob() finds files matching a pattern (like *.ts)\n");
 // Find all TypeScript files
 console.log('Pattern: "**/*.ts" (all .ts files in any folder)');
 console.log("-".repeat(50));
-for await (const entry of sandbox.expandGlob("**/*.ts", {
+for await (const entry of sandbox.fs.expandGlob("**/*.ts", {
   root: "/home/user/my-project",
 })) {
   const shortPath = entry.path.replace("/home/user/my-project/", "");
@@ -104,7 +104,7 @@ for await (const entry of sandbox.expandGlob("**/*.ts", {
 // Find all TSX files (React components)
 console.log('\nPattern: "**/*.tsx" (all React component files)');
 console.log("-".repeat(50));
-for await (const entry of sandbox.expandGlob("**/*.tsx", {
+for await (const entry of sandbox.fs.expandGlob("**/*.tsx", {
   root: "/home/user/my-project",
 })) {
   const shortPath = entry.path.replace("/home/user/my-project/", "");
@@ -114,7 +114,7 @@ for await (const entry of sandbox.expandGlob("**/*.tsx", {
 // Find all JSON config files
 console.log('\nPattern: "*.json" (JSON files in root only)');
 console.log("-".repeat(50));
-for await (const entry of sandbox.expandGlob("*.json", {
+for await (const entry of sandbox.fs.expandGlob("*.json", {
   root: "/home/user/my-project",
 })) {
   console.log(`  ${entry.name}`);
@@ -123,7 +123,7 @@ for await (const entry of sandbox.expandGlob("*.json", {
 // Find all test files
 console.log('\nPattern: "**/*.test.ts" (all test files)');
 console.log("-".repeat(50));
-for await (const entry of sandbox.expandGlob("**/*.test.ts", {
+for await (const entry of sandbox.fs.expandGlob("**/*.test.ts", {
   root: "/home/user/my-project",
 })) {
   const shortPath = entry.path.replace("/home/user/my-project/", "");
@@ -133,7 +133,7 @@ for await (const entry of sandbox.expandGlob("**/*.test.ts", {
 // Find all image files
 console.log('\nPattern: "**/*.{png,jpg}" (all images)');
 console.log("-".repeat(50));
-for await (const entry of sandbox.expandGlob("**/*.{png,jpg}", {
+for await (const entry of sandbox.fs.expandGlob("**/*.{png,jpg}", {
   root: "/home/user/my-project",
 })) {
   const shortPath = entry.path.replace("/home/user/my-project/", "");
@@ -149,7 +149,7 @@ console.log("Counting files by extension:\n");
 
 const counts: Record<string, number> = {};
 
-for await (const entry of sandbox.walk("/home/user/my-project", {})) {
+for await (const entry of sandbox.fs.walk("/home/user/my-project", {})) {
   if (entry.isFile) {
     // Get the file extension (like ".ts" or ".json")
     const ext = entry.name.includes(".") ? "." + entry.name.split(".").pop() : "(no extension)";
